@@ -1,19 +1,31 @@
 /// <reference types="vitest" />
 // Configure Vitest (https://vitest.dev/config/)
 
-import tsconfigPaths from "vite-tsconfig-paths";
+import swc from "@rollup/plugin-swc";
+import { withFilter } from "vite";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-    plugins: [tsconfigPaths()],
+    plugins: [
+        withFilter(
+            swc({
+                swc: {
+                    jsc: {
+                        parser: { syntax: "typescript", decorators: true },
+                        transform: { decoratorVersion: "2022-03" },
+                    },
+                },
+            }),
+            { transform: { code: "@" } },
+        ),
+    ],
+    resolve: {
+        tsconfigPaths: true,
+    },
     test: {
         globals: true,
         coverage: {
             exclude: ["**/index.ts", "src/type", "test/**", "src/helpers/ArrayTypeUtils.ts"]
         }
     },
-    // Workaround: Remove when vitest supports decorators
-    esbuild: {
-        target: "es2022"
-    }
 });

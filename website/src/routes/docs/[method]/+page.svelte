@@ -1,18 +1,18 @@
 <script lang="ts">
-    import type { PageServerData } from "./$types.js";
+	import type { PageServerData } from "./$types.js";
 
-    import EditButton from "$components/EditButton.svelte";
-    import Meta from "$components/Meta.svelte";
-    import Playground from "$components/Playground.svelte";
-    
-    export let data: PageServerData;
+	import EditButton from "$components/EditButton.svelte";
+	import Meta from "$components/Meta.svelte";
+	import Playground from "$components/Playground.svelte";
 
-    $: name = data.name;
-    $: description = data.description;
-    $: code = data.code;
-    $: parsedDescription = data.parsedDescription;
-    $: path = data.path;
-    $: parsedDeprecated = data.parsedDeprecated;
+	let { data }: { data: PageServerData } = $props();
+
+	let name = $derived(data.name);
+	let description = $derived(data.description);
+	let code = $derived(data.code);
+	let parsedDescription = $derived(data.parsedDescription);
+	let path = $derived(data.path);
+	let parsedDeprecated = $derived(data.parsedDeprecated);
 </script>
 
 <Meta title={name} {description}/>

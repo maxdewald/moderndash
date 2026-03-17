@@ -46,7 +46,7 @@ test("can return the lower bound", () => {
     expect(randomFloat(0, 1)).toBe(0);
 });
 
-test("average of 200000 random numbers should be close to the middle", () => {
+test("average of 200000 random numbers should be close to the middle", { retry: 3 }, () => {
     const min = 0;
     const max = 1;
     const iterations = 200000;
@@ -60,4 +60,4 @@ test("average of 200000 random numbers should be close to the middle", () => {
 
     expect(average).toBeGreaterThanOrEqual(0.499);
     expect(average).toBeLessThanOrEqual(0.501);
-}, { retry: 3 });
+});

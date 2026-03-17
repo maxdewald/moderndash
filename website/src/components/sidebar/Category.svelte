@@ -1,23 +1,22 @@
 <script lang="ts">
-    import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-    import { capitalize } from "moderndash";
-    import Fa from "svelte-fa";
+	import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+	import { capitalize } from "moderndash";
+	import Fa from "svelte-fa";
 
-    export let categoryName: string;
-    export let entries: string[];
+	let { categoryName, entries }: { categoryName: string; entries: string[] } = $props();
 
-    let isOpen = true;
+	let isOpen = $state(true);
 </script>
 
 <div>
-    <div class="font-semibold mb-4 tracking-tight text-slate-900 flex items-center cursor-pointer text-lg select-none"
-        on:click={() => (isOpen = !isOpen)} on:keypress={() => (isOpen = !isOpen)}
-    >
-        <span class="mr-3">
-            <Fa icon={isOpen ? faChevronDown : faChevronRight}/>
-        </span>
-        {capitalize(categoryName)}
-    </div>
+	<button type="button" class="font-semibold mb-4 tracking-tight text-slate-900 flex items-center cursor-pointer text-lg select-none w-full"
+		onclick={() => (isOpen = !isOpen)}
+	>
+		<span class="mr-3">
+			<Fa icon={isOpen ? faChevronDown : faChevronRight}/>
+		</span>
+		{capitalize(categoryName)}
+	</button>
     {#if isOpen}
         <div>
             {#each entries as entry}

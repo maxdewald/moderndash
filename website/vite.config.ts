@@ -1,9 +1,13 @@
 import type { UserConfig } from "vite";
 
 import { sveltekit } from "@sveltejs/kit/vite";
+import tailwindcss from "@tailwindcss/vite";
 
 const config: UserConfig = {
-    plugins: [sveltekit()],
+    plugins: [tailwindcss(), sveltekit()],
+    optimizeDeps: {
+        exclude: ["svelte-fa", "svelte-meta-tags"]
+    },
     build: {
         minify: true,
         sourcemap: true,

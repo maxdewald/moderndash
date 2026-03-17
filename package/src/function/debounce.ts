@@ -27,7 +27,7 @@ export function debounce<TFunc extends GenericFunction<TFunc>>(func: TFunc, wait
     flush: () => void;
     pending: () => boolean;
 } {
-    let timeoutId: NodeJS.Timeout | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
     const debounced = function (this: unknown, ...args: Parameters<TFunc>) {
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
