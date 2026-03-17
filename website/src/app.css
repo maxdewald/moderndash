@@ -39,10 +39,12 @@ ul {
     @apply mt-2 ml-8;
 }
 
-a {
-    @apply text-blue-800;
-    &:hover {
-        @apply text-blue-900;
+@layer base {
+    a {
+        @apply text-blue-800;
+        &:hover {
+            @apply text-blue-900;
+        }
     }
 }
 
