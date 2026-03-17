@@ -1,5 +1,13 @@
 # moderndash
 
+## 4.0.1
+
+### Patch Changes
+
+- `merge` | Fix prototype pollution vulnerability by filtering `__proto__` keys ([`58ece8a`](https://github.com/maxdewald/moderndash/commit/58ece8a063346b850d6164f84c4838a6058ea787))
+
+- `set` | Fix prototype pollution vulnerability by filtering `__proto__` keys ([`001146b`](https://github.com/maxdewald/moderndash/commit/001146b7ce1c372db5f7b51cc75c3692784f6edb))
+
 ## 4.0.0
 
 ### Major Changes
