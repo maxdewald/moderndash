@@ -1,4 +1,4 @@
-![ModernDash Logo](https://raw.githubusercontent.com/maxdew/moderndash/main/website/src/assets/moderndashLogo.svg)
+![ModernDash Logo](https://raw.githubusercontent.com/maxdewald/moderndash/main/website/src/assets/moderndashLogo.svg)
 
 <p align=center>
   <b>
@@ -32,8 +32,8 @@
   <span>
     <img alt="node-current" src="https://img.shields.io/node/v/moderndash?color=blue">
   </span>
-  <a href="https://github.com/maxdew/moderndash/blob/main/LICENSE">
-    <img alt="GitHub" src="https://img.shields.io/github/license/maxdew/moderndash?color=orange">
+  <a href="https://github.com/maxdewald/moderndash/blob/main/LICENSE">
+    <img alt="GitHub" src="https://img.shields.io/github/license/maxdewald/moderndash?color=orange">
   </a>
 </div>
 
@@ -46,7 +46,7 @@
 ---
 
 <div align=center class="space-y">
-  <img alt="Intro Code" width=100% src="https://raw.githubusercontent.com/maxdew/moderndash/main/website/src/assets/introCodeV6.svg"></img>
+  <img alt="Intro Code" width=100% src="https://raw.githubusercontent.com/maxdewald/moderndash/main/website/src/assets/introCodeV6.svg"></img>
 </div>
 
 ## 💾 Installation
@@ -62,7 +62,7 @@ npm install moderndash
 
 ModernDash aims to outperform Lodash and deliver lightning-fast utility functions. Performance is not an afterthought, but a top priority. You can expect ModernDash to exceed or at least match the performance of Lodash in most benchmarks, ensuring that your project stays speedy and efficient.
 
-**[[ Benchmark Results](https://github.com/maxdew/moderndash/blob/main/benchmark/RESULTS.md) ]**
+**[[ Benchmark Results](https://github.com/maxdewald/moderndash/blob/main/benchmark/RESULTS.md) ]**
 
 ## 🗃 FAQ
 
@@ -79,4 +79,4 @@ To [type-fest](https://github.com/sindresorhus/type-fest) for providing some val
 
 - Star the repo if you like it
 
-- Check the [contributing](https://github.com/maxdew/moderndash/blob/main/CONTRIBUTING.md) section!
+- Check the [contributing](https://github.com/maxdewald/moderndash/blob/main/CONTRIBUTING.md) section!
