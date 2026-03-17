@@ -13,4 +13,4 @@
     {@html data.parsedMarkdown}
 </div>
 
-<EditButton href="https://github.com/Maggi64/moderndash/edit/main/README.md"/>
+<EditButton href="https://github.com/maxdew/moderndash/edit/main/README.md"/>
