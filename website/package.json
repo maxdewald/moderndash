@@ -3,7 +3,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "svelte-kit sync && vite build",
 		"preview": "vite preview",
 		"start": "node ./build",
 		"postbuild": "npx svelte-sitemap --domain https://moderndash.io"
