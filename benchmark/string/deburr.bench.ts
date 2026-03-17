@@ -5,7 +5,7 @@ import { bench, describe } from "vitest";
 import { randomStringArray } from "../testData.js";
 
 describe("deburr", () => {
-    const strings = randomStringArray(100, "avdasfaáäæÅèÊ");
+    const strings = randomStringArray(100, "avdasfaáäæÅèÊøœßðþłŋĦĲ");
 
     bench("moderndash", () => {
         for (const str of strings) {
