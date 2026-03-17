@@ -43,3 +43,27 @@ test("allow _ and $ in path", () => {
     expect(() => set(obj, "a.c_1", 1)).not.toThrow();
     expect(() => set(obj, "a.c-$1", 1)).not.toThrow();
 });
+
+test("silently skip __proto__ to prevent prototype pollution", () => {
+    const obj = { a: { b: 2 } };
+    const result = set(obj, "__proto__.polluted", "yes");
+    expect(result).toBe(obj);
+
+    set(obj, "a.__proto__.b", "yes");
+    expect(obj).toEqual({ a: { b: 2 } });
+
+    expect(({} as any).polluted).toBeUndefined();
+});
+
+test("allow legitimate constructor and prototype keys", () => {
+    const obj1 = { a: {} };
+    set(obj1, "a.constructor", "val");
+    expect((obj1 as any).a.constructor).toBe("val");
+
+    const obj2 = { a: {} };
+    set(obj2, "a.prototype.b", "val");
+    expect((obj2 as any).a.prototype.b).toBe("val");
+
+    // Verify no pollution occurred
+    expect(({} as any).polluted).toBeUndefined();
+});
