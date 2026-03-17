@@ -51,6 +51,9 @@
     "dist"
   ],
   "homepage": "https://moderndash.io",
+  "publishConfig": {
+    "provenance": true
+  },
   "dependencies": {
     "hotscript": "1.0.13",
     "type-fest": "5.4.4"
