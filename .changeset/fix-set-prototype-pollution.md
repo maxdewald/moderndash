@@ -2,4 +2,4 @@
 "moderndash": patch
 ---
 
-Fix prototype pollution vulnerability in `set` by filtering `__proto__` keys
+`set` | Fix prototype pollution vulnerability by filtering `__proto__` keys

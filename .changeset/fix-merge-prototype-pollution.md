@@ -2,4 +2,4 @@
 "moderndash": patch
 ---
 
-Fix prototype pollution vulnerability in `merge` by filtering `__proto__` keys
+`merge` | Fix prototype pollution vulnerability by filtering `__proto__` keys
