@@ -1,5 +1,11 @@
 # moderndash
 
+## 4.0.2
+
+### Patch Changes
+
+- Fix `deburr` to handle ligatures and special Latin characters (æ, œ, ß, ø, ð, þ, ł, etc.) that don't decompose via Unicode NFD normalization. Previously these characters were silently passed through unchanged. Also improves performance (~2.4x faster than lodash). ([#199](https://github.com/maxdewald/moderndash/pull/199))
+
 ## 4.0.1
 
 ### Patch Changes
