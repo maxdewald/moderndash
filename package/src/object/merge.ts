@@ -29,6 +29,7 @@ export function merge<TTarget extends GenericObject, TSources extends ArrayMinLe
     const targetCopy = { ...target };
     for (const source of sources) {
         for (const [key, value] of Object.entries(source)) {
+            if (key === "__proto__") continue;
             (targetCopy as PlainObject)[key] = isPlainObject(value) && isPlainObject(targetCopy[key]) 
                 ? merge(targetCopy[key], value) 
                 : value;

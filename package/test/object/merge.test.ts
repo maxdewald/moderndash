@@ -31,3 +31,12 @@ test("do not merge arrays", () => {
 
     expect(merge(array1, array2)).toEqual({ a:[3, 4] });
 });
+
+test("skip __proto__ keys to prevent prototype pollution", () => {
+    const payload = JSON.parse('{"__proto__":{"polluted":true},"safe":1}');
+    const result = merge({}, payload);
+
+    expect(result).toEqual({ safe: 1 });
+    expect(({} as any).polluted).toBeUndefined();
+    expect((result as any).polluted).toBeUndefined();
+});
