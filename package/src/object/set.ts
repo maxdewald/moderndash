@@ -51,6 +51,9 @@ export function set<TObj extends GenericObject, TPath extends Paths<TObj>, TVal>
     for (let index = 0; index < pathParts.length; index++) {
         const key = pathParts[index].replace(matchBracketsRegex, "");
 
+        if (key === "__proto__")
+            return obj as UpdateObj<TObj, TPath, TVal>;
+
         if (index === pathParts.length - 1) {
             currentObj[key] = value;
             break;
