@@ -56,10 +56,10 @@
   },
   "dependencies": {
     "hotscript": "1.0.13",
-    "type-fest": "5.4.4"
+    "type-fest": "5.10.0"
   },
   "devDependencies": {
     "barrelsby": "2.8.1",
-    "tsup": "8.5.1"
+    "tsup": "9.0.0"
   }
 }
