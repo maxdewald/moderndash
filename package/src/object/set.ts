@@ -10,7 +10,20 @@ const matchBracketsRegex = /[[\]]/g;
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Paths<TObj> = Call<Objects.AllPaths, TObj> | string & {};
-type UpdateObj<TObj extends PlainObject, TPath extends string, TVal> = Call<Objects.Update<TPath, TVal>, TObj>;
+type UpdateObj<TObj, TPath extends string, TVal> =
+    TPath extends `.${infer TRest}` ? UpdateObj<TObj, TRest, TVal>
+        : TPath extends `${infer TKey}[${infer TIndex}]${infer TRest}`
+            ? Call<Objects.Update<TKey, UpdateArray<Call<Objects.Get<TKey>, TObj>, TIndex, TRest, TVal>>, TObj>
+            : Call<Objects.Update<TPath, TVal>, TObj>;
+
+// Bracket paths create arrays at runtime, replacing any non-array value.
+// Objects.Update treats numeric path components as object keys instead.
+type UpdateArray<TArray, TIndex extends string, TPath extends string, TVal> =
+    TArray extends readonly unknown[]
+        ? TIndex extends keyof TArray
+            ? { [K in keyof TArray]: K extends TIndex ? UpdateObj<TArray[K], TPath, TVal> : TArray[K] }
+            : (TArray[number] | UpdateObj<TArray[number], TPath, TVal>)[]
+        : UpdateObj<{}, TPath, TVal>[];
 
 /**
  * Sets the value at path of object. If a portion of path doesn’t exist, it’s created.
