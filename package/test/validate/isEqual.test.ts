@@ -30,6 +30,14 @@ test("objects", () => {
     expect(isEqual({ a: 1 }, { a: 2 })).toBe(false);
 });
 
+test("objects with different key orders", () => {
+    const a = { a: 1, b: 2 };
+    const b = { b: 2, a: 1 };
+
+    expect(isEqual(a, b)).toBe(true);
+    expect(isEqual(b, a)).toBe(true);
+});
+
 test("dates", () => {
     expect(isEqual(new Date(1), new Date(1))).toBe(true);
     expect(isEqual(new Date(1), new Date(2))).toBe(false);
@@ -45,6 +53,14 @@ test("nested objects", () => {
     expect(isEqual({ a: { b: 1 } }, { a: { b: 2 } })).toBe(false);
 });
 
+test("nested objects with different key orders", () => {
+    const a = { user: { id: 1, name: "Ada" }, active: true };
+    const b = { active: true, user: { name: "Ada", id: 1 } };
+
+    expect(isEqual(a, b)).toBe(true);
+    expect(isEqual(b, a)).toBe(true);
+});
+
 test("nested arrays", () => {
     expect(isEqual([[1], [2], [3]], [[1], [2], [3]])).toBe(true);
     expect(isEqual([[1], [2], [3]], [[1], [2], [4]])).toBe(false);
@@ -57,6 +73,32 @@ test("nested objects and arrays", () => {
 
 test("objects with different keys", () => {
     expect(isEqual({ a: 1 }, { b: 1 })).toBe(false);
+    expect(isEqual({ a: undefined }, { b: undefined })).toBe(false);
+    expect(isEqual({ a: undefined }, { a: undefined, b: undefined })).toBe(false);
+    expect(isEqual({ a: undefined, b: undefined }, { a: undefined })).toBe(false);
+    expect(isEqual({ a: 1, b: 2 }, { b: 3, a: 1 })).toBe(false);
+});
+
+test("objects with different keys do not read getters", () => {
+    const a = {
+        get shared() { throw new Error("Unexpected property access"); },
+        onlyA: 0,
+    };
+    const b = { shared: 1, onlyB: 0 };
+
+    expect(isEqual(a, b)).toBe(false);
+    expect(isEqual(b, a)).toBe(false);
+});
+
+test("objects compare only their own enumerable keys", () => {
+    const inherited = { b: 1 };
+    Object.setPrototypeOf(inherited, { a: 1 });
+    const nonEnumerable = Object.defineProperty({ b: 1 }, "a", { value: 1 });
+
+    for (const other of [inherited, nonEnumerable]) {
+        expect(isEqual({ a: 1 }, other)).toBe(false);
+        expect(isEqual(other, { a: 1 })).toBe(false);
+    }
 });
 
 test("arrays with different lengths", () => {
