@@ -79,6 +79,17 @@ test("objects with different keys", () => {
     expect(isEqual({ a: 1, b: 2 }, { b: 3, a: 1 })).toBe(false);
 });
 
+test("objects with different keys do not read getters", () => {
+    const a = {
+        get shared() { throw new Error("Unexpected property access"); },
+        onlyA: 0,
+    };
+    const b = { shared: 1, onlyB: 0 };
+
+    expect(isEqual(a, b)).toBe(false);
+    expect(isEqual(b, a)).toBe(false);
+});
+
 test("objects compare only their own enumerable keys", () => {
     const inherited = { b: 1 };
     Object.setPrototypeOf(inherited, { a: 1 });
