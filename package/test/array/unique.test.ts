@@ -13,6 +13,14 @@ test("handle objects and arrays correctly", () => {
     expect(unique(input, isEqual)).toEqual(expectedOutput);
 });
 
+test("ignore object key order when comparing with isEqual", () => {
+    const first = { id: 1, name: "Ada" };
+    const reordered = { name: "Ada", id: 1 };
+    const different = { id: 2, name: "Ada" };
+
+    expect(unique([first, reordered, different], isEqual)).toEqual([first, different]);
+});
+
 test("handle compareFN", () => {
     expect(unique([2, 1, 2])).toEqual([2, 1]);
 
